@@ -9,7 +9,9 @@ public class WordPrinter {
         System.out.print("Podaj jakiś wyraz: ");
         String input = scanner.nextLine();
 
-        System.out.println("Wprowadzony wyraz to: " + input);
+        // Wypisanie wyrazu od tyłu
+        String reversed = new StringBuilder(input).reverse().toString();
+        System.out.println("Wprowadzony wyraz od tyłu to: " + reversed);
 
         scanner.close();
     }
