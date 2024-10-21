@@ -5,30 +5,31 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnector {
+    private DatabaseConfig config;
     private Connection connection;
 
     public DatabaseConnector(DatabaseConfig config) {
-        try {
-            // Завантаження драйвера (можна пропустити для нових версій JDBC, але залишаємо для надійності)
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Встановлення з'єднання
-            connection = DriverManager.getConnection(config.getUrl(), config.getUsername(), config.getPassword());
-            System.out.println("Connected to the database!");
-        } catch (ClassNotFoundException e) {
-            System.err.println("JDBC Driver not found: " + e.getMessage());
-        } catch (SQLException e) {
-            System.err.println("Error connecting to the database: " + e.getMessage());
-        }
+        this.config = config;
+        connect();
     }
 
+    private void connect() {
+        try {
+            connection = DriverManager.getConnection(
+                    config.getUrl(), config.getUsername(), config.getPassword()
+            );
+            System.out.println("Połączono z bazą danych!");
+        } catch (SQLException e) {
+            System.out.println("Błąd podczas łączenia z bazą danych: " + e.getMessage());
+        }
+    }
     public void closeConnection() {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Connection closed.");
+                System.out.println("Połączenie zamknięte.");
             } catch (SQLException e) {
-                System.err.println("Error closing the connection: " + e.getMessage());
+                System.out.println("Błąd podczas zamykania połączenia: " + e.getMessage());
             }
         }
     }
