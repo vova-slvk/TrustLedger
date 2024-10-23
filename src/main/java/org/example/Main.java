@@ -1,9 +1,6 @@
 package org.example;
 
 import java.util.Scanner;
-import com.trustledger.models.Transaction;
-import com.trustledger.models.TrustRating;
-import com.trustledger.models.User;
 
 
 public class Main {

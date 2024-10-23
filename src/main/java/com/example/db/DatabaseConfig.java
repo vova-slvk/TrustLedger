@@ -1,13 +1,11 @@
 package com.example.db;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class DatabaseConfig {
     private String url;
     private String username;
     private String password;
 
+    // Геттери і сеттери
     public String getUrl() {
         return url;
     }
